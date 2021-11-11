@@ -1,0 +1,15 @@
+ARG NODE_TAG
+FROM node:${NODE_TAG}
+
+USER node
+WORKDIR /home/node
+
+COPY ./package*.json ./
+
+# RUN npm install
+
+# COPY --chown=node:node . .
+
+EXPOSE 4200
+
+CMD ["npm", "run", "start"]

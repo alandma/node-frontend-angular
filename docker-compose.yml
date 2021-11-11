@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  
+  frontend-angular:
+    env_file: 
+      - ./.env/prd.env
+    build:
+      context: .
+      dockerfile: Dockerfile.prd
+      args: 
+        BUILD_ENV: --configuration=production #Exemplo
+        NODE_TAG: alpine #Exemplo
+        NGINX_TAG: stable-alpine #Exemplo
+    networks: 
+      - node-net
+    ports: 
+      - "80:80"
+  
+  frontend-angular-dev:
+    user: "${UID}:${GID}"
+    env_file: 
+      - ./.env/dev.env
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args: 
+        NODE_TAG: alpine #Exemplo
+    networks:
+      - node-net
+    ports:
+      - "8080:4200"
+    volumes:
+      - ./:/home/node
+    command: sh -c "npm install && npm run start"
+
+networks: 
+  node-net:
+    driver: bridge
