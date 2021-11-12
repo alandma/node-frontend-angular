@@ -3,7 +3,7 @@
 Criação de containers em docker para utilizar em projetos `node` em `javascript` e `typescript`.
 
 ## Criando/Adicionando o projeto
-Adicione seu projeto na raiz desse repositorio ficando com os "**Dockerfiles**", algo assim;
+Adicione/crie seu projeto na raiz desse repositorio, ficando parecido com algo assim;
 
 ```
 node-frontend-angular
@@ -49,7 +49,9 @@ No `docker-compose.yml` temos duas possibilidades de execução, `desenvolviment
 ```console
 docker-compose up frontend-angular-dev
 ```
-dessa forma a saida ficará "travada" no terminal, para observação dos logs.
+sem o parametro "[-d](#Referencias)" a saida ficará "travada" no console, para observação dos logs.
+
+>No `ambiente de dev` o codigo fica "espelhado" com o container, dessa forma,  pode-se trabalhar localmente e visualizar os resultados em tempo real.
 
 ### Compilando (_build_) o projeto para "**produção**";
 ```console
@@ -57,9 +59,11 @@ docker-compose up --build -d frontend-angular
 ```
 >O `Dockerfile.prd` foi criado com [multi-stage](https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds), primeiro ele irá fazer o _build_ do projeto, pegar o "**resultado**" e copiar para o "**estagio**" dois que é a criação do container do _nginx_.
 
-#### Referencias:
+#### Referências:
 
 - https://docs.docker.com/compose/compose-file/compose-file-v3/
+- https://docs.docker.com/engine/reference/builder/
 - https://hub.docker.com/_/node/
 - https://hub.docker.com/_/nginx/
 - https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
+- https://docs.docker.com/compose/reference/up/
